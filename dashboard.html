@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Pitcher Leaderboard</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Release Velocity</th>
+            <th>Extension</th>
+            <th>Tilt</th>
+            <th>VAA</th>
+            <th>Spin Rate (RPM)</th>
+            <th>Release Height</th>
+            <th>IVB</th>
+            <th>IHB</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pitcher in pitchers %}
+        <tr>
+            <td>{{ pitcher.name }}</td>
+            <td>{{ pitcher.release_velocity }}</td>
+            <td>{{ pitcher.extension }}</td>
+            <td>{{ pitcher.tilt }}</td>
+            <td>{{ pitcher.vaa }}</td>
+            <td>{{ pitcher.spin_rate }}</td>
+            <td>{{ pitcher.release_height }}</td>
+            <td>{{ pitcher.ivb }}</td>
+            <td>{{ pitcher.ihb }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+<form method="GET" action="/selected_pitcher"></form>
+    <label for="pitchers">Select a Pitcher:</label>
+    <select name="pitchers" id="pitchers">
+        {% for pitcher in pitchers %}
+            <option value="{{ pitcher.id }}">{{ pitcher.name }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="View Stats">
+</form>
